@@ -1,0 +1,50 @@
+Day 5 Of #100DaysOfCode
+>Made HeadsOrTails game
+>Inspected how lists works.
+>How random function works.(random.randint(), random.random(),random.uniform())
+>Made little rock paper sciccors game.
+
+HeadsOrTails = random.randint(0,1)
+if HeadsOrTails == 0:
+    print("Heads")
+else:
+    print("Tails")
+
+item1 = "a"
+item2 = "b"
+
+fruits = [item1, item2]
+
+print(fruits)
+
+states_of_america = ["Delaware", "Pennysylvania", "New Jersey", "Georgia", "Connecticut"]
+print(states_of_america[-1])
+
+states_of_america.append(2)
+print(states_of_america[-1])
+
+states_of_america.append("Angelaland")
+print(states_of_america[-1])
+
+states_of_america.extend(["Angelaland","Jack Bauer Land"])
+print(states_of_america[-1])
+
+
+
+friends = ["Alice", "Bob", "Charlie", "David", "Emanuel"]
+print(random.choice(friends))
+
+randomNumber = random.randint(1,5)
+print(friends[randomNumber])
+
+print(len(states_of_america))
+
+print(states_of_america[randomNumber -1])
+
+fruits = ["Strawberries", "Nectarines", "Apples", "Grapes"]
+vegetables = ["Spinach", "Kale", "Tomatoes", "Celery", " Potatoes"]
+
+dirty_dozen = [fruits,vegetables]
+print(dirty_dozen)
+
+print(dirty_dozen[1][1]) # 1.listenin icindeki 1.liste yani 1 > vegetables o da 1 > kale gibi
