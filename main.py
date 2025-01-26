@@ -612,3 +612,55 @@ import itertools
 #     ceasar(text,shift_amount,direction="encode")
 # else:
 #     print("Okay bro.")
+
+# DAY 9 ----------------------------------------------------------------------------------------------------------------
+
+student_scores = {
+    'Harry': 88,
+    'Ron': 78,
+    'Hermione': 95,
+    'Draco': 75,
+    'Neville': 60
+}
+
+student_grades = {}
+for key in student_scores:
+    score = student_scores[key]
+    if score >= 91:
+        student_grades[key] = "Outstanding"
+    elif score >= 81:
+        student_grades[key] = "Exceeds Expectations"
+    elif score >= 71:
+        student_grades[key] = "Acceptable"
+    else:
+        student_grades[key] = "Fail"
+
+print(student_grades)
+
+capitals = {
+    "France": "Paris",
+    "Germany": "Berlin"
+}
+
+# travel_log = {
+#     "France": ["Paris", "Lille", "Dij"],
+#     "Germany": ["Stuttgart", "Berlin"]
+# }
+
+# print(travel_log["France"][1])
+
+nested_list = ["A","B",["C","D"]]
+# print(nested_list[2][1])
+
+travel_log = {
+    "France": {
+        "cities_visited": ["Paris", "Lille", "Dijon"],
+        "num_times_visited": 12
+    },
+    "Germany": {
+        "cities_visited": ["Berlin", "Hamburg", "Stuttgart"],
+        "num_times_visited": 5
+    }
+}
+
+print(travel_log["Germany"]["cities_visited"][2])
