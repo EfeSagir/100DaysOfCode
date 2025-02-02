@@ -642,6 +642,22 @@ capitals = {
     "Germany": "Berlin"
 }
 
+print(capitals.get("France"))
+capitals.update({"Turkey": "Istanbul"})
+print(capitals)
+capitals.pop("Germany")
+capitals.popitem()
+capitals.clear
+keys = capitals.keys()
+print(keys)
+values = capitals.values()
+print(values)
+items = capitals.items()
+print(items)
+
+for key,value in items:
+    print(f"{key} : {value}")
+
 # travel_log = {
 #     "France": ["Paris", "Lille", "Dij"],
 #     "Germany": ["Stuttgart", "Berlin"]
