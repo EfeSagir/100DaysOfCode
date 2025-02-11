@@ -1,6 +1,8 @@
 import random
 import math
 import itertools
+from tkinter.messagebox import YESNO
+
 # print("Hello world!")
 #
 # print("+Hello Efe How Are You? \n-I am fine hbu?")
@@ -643,7 +645,7 @@ import itertools
 # }
 #
 # print(capitals.get("France"))
-# capitals.update({"Turkey": "Istanbul"})
+# capitals.update({"Turkey": "Ankara"})
 # print(capitals)
 # capitals.pop("Germany")
 # capitals.popitem()
@@ -658,10 +660,10 @@ import itertools
 # for key,value in items:
 #     print(f"{key} : {value}")
 #
-# # travel_log = {
-# #     "France": ["Paris", "Lille", "Dij"],
-# #     "Germany": ["Stuttgart", "Berlin"]
-# # }
+# travel_log = {
+#     "France": ["Paris", "Lille", "Dij"],
+#     "Germany": ["Stuttgart", "Berlin"]
+# }
 #
 # # print(travel_log["France"][1])
 #
@@ -681,21 +683,151 @@ import itertools
 #
 # print(travel_log["Germany"]["cities_visited"][2])
 #
-# # operator = input("pls enter operator")
-# #
-# # if isinstance(operator, str):
-# #     print(operator)
-
-Dictionary = {"Key" : "Value"}
-
-programming_dictionary = {"Bug" : "An error in a program that prevents the program from running as expected.",
-                          "Function" : "A piece of code that you can easily call over and over again.",
-                          "Loop" : "The action of doing something of doing over and over again.",
-                          123 : "It is a combination of the first 3 positive numbers"}
-
-print(programming_dictionary["Bug"])
-print(programming_dictionary["Function"])
-print(programming_dictionary["Loop"])
-print(programming_dictionary[123])
-programming_dictionary["Continue"] = "It is a control flow statament for loops to whether you want to skip execution of a specific part in your code."
-print(programming_dictionary["Continue"])
+# operator = input("pls enter operator")
+#
+# if isinstance(operator, str):
+#     print(operator)
+#
+# Dictionary = {"Key" : "Value"}
+#
+# programming_dictionary = {"Bug" : "An error in a program that prevents the program from running as expected.",
+#                           "Function" : "A piece of code that you can easily call over and over again.",
+#                           "Loop" : "The action of doing something of doing over and over again.",
+#                           123 : "It is a combination of the first 3 positive numbers"}
+#
+# print(programming_dictionary["Bug"])
+# print(programming_dictionary["Function"])
+# print(programming_dictionary["Loop"])
+# print(programming_dictionary[123])
+# programming_dictionary["Continue"] = "It is a control flow statament for loops to whether you want to skip execution of a specific part in your code."
+# print(programming_dictionary["Continue"])
+#
+# empty_dictionary = {}
+# print(empty_dictionary)
+#
+# for key in programming_dictionary:
+#     print(key)
+#     print(programming_dictionary)
+#
+# # nesting is adding a item into a dictionary
+#
+# Dictionary = {"Key" : "Value 1",
+#               "Key 2" : "Value 2"}
+#
+# capitals = {"Germany" : "Berlin",
+#             "France" : "Paris",
+#             "Turkey" : "Ankara"} 	#Lists can be indexed directly (e.g., nested_list[2][0]), while Dictionaries require keys to access values (e.g., capitals["Germany"]).
+#
+#
+# print(capitals["France"][1])
+#
+# travel_log = {
+#     "France": {
+#         "num_times_visited": 9,
+#         "cities_visited": ["Paris", "Lille", "Dijon"]
+#     },
+#     "Germany": {
+#         "cities_visited": ["Berlin", "Hamburg", "Stuttgart"],
+#         "total_visits": 5
+#     }
+# }
+#
+# print(travel_log["Germany"]["cities_visited"][2])
+#
+# name = input("Please enter your name:\n")
+# bid = input("Please enter your bid:\n")
+#
+# bidding_dictionary = {}
+# bidding_dictionary[name] = bid
+#
+# yes_or_no = input("If you want to enter another input write Y if you don't write N.")
+# while True:
+#     if (yes_or_no == "Y"):
+#         print("\n" * 100)
+#         name = input("Please enter your name:\n")
+#         bid = input("Please enter your bid:\n")
+#         bidding_dictionary[name] = bid
+#         yes_or_no = input("If you want to enter another input write Y if you don't write N.")
+#
+#     elif(yes_or_no == "N"):
+#         max_bidding = max(bidding_dictionary.values())
+#         print(f"The highest bid is {bidding_dictionary[max_bidding]} by {max_bidding}")
+#         break
+# DAY 10 ----------------------------------------------------------------------------------------------------------------
+# import utilities
+#
+# stack = []
+# turn_start = False
+#
+# while True:
+#
+#     if (stack == []):
+#         turn_start = False
+#         first_input_from_user = float(input())
+#         stack.append(first_input_from_user)
+#         operator = input()
+#         if isinstance(operator, float):
+#             stack.append(stack[-1] + "operator")
+#
+#         if(operator == "="):
+#             print(stack[-1])
+#
+#         second_input_from_user = float(input())
+#
+#         match operator:
+#             case "+":
+#                  stack.append(utilities.summation(stack[-1],second_input_from_user))
+#             case "-":
+#                   stack.append(utilities.substraction(stack[-1],second_input_from_user))
+#             case "*":
+#                   stack.append(utilities.multiplication(stack[-1],second_input_from_user))
+#             case "/":
+#                 if (second_input_from_user != 0):
+#                     stack.append(utilities.division(stack[-1],second_input_from_user))
+#                 else:
+#                     print("Denominator Can't Be 0!")
+#                     third_input_from_user = float(input())
+#                     if (third_input_from_user != 0):
+#                         stack.append(utilities.division(stack[-1],third_input_from_user))
+#
+#     user_input = input()
+#
+#     if (user_input not in ("+","-","*","/","=")):
+#         stack.append(float(user_input))
+#         turn_start = False
+#         continue
+#
+#     match user_input:
+#         case "+":
+#             if (turn_start):
+#                 continue
+#             c = float(input())
+#             stack.append(utilities.summation(stack[-1], c))
+#         case "-":
+#             if (turn_start):
+#                 continue
+#             d = float(input())
+#             stack.append(utilities.substraction(stack[-1], d))
+#         case "*":
+#             if (turn_start):
+#                 continue
+#             e = float(input())
+#             stack.append(utilities.multiplication(stack[-1], e))
+#         case "/":
+#             if (turn_start):
+#                 continue
+#             f = float(input())
+#             if (f != 0):
+#                 stack.append(utilities.division(stack[-1], f))
+#             else:
+#                 print("Denominator Can't Be 0!")
+#                 fourth_input_from_user = float(input())
+#                 if (fourth_input_from_user != 0):
+#                     stack.append(utilities.division(stack[-1],fourth_input_from_user))
+#
+#         case "=":
+#             if (turn_start == True):
+#                 continue
+#             print(stack[-1])
+#             turn_start = False
+# DAY 11 ----------------------------------------------------------------------------------------------------------------
