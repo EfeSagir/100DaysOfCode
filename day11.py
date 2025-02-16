@@ -60,6 +60,8 @@ if (yes_or_no == "yes"):
 
         for char in dealer_cards:
             dealer_total += card_values[char]
+        if(char == "A"):
+            print("efe eger 21i geciyorsa dealer totale 11 eklemek o zaman ayi 1 kabul et diceksin ama eger 21i gecmezse 11 eklenmesi 11 kabul ettireceksin direkt directly. astan sonraki kart 21i gecerse ayi 1 yapiyosun.")
         if dealer_total >= 18:
             print("Dealer's Hand:",dealer_cards)
             break
