@@ -1,5 +1,12 @@
 import random
-            
+
+user_cards = []
+dealer_cards = []
+user_cards_values = []
+dealer_cards_values = []
+user_total = 0
+dealer_total = 0
+
 cards = ["2", "2", "2", "2",
          "3", "3", "3", "3",
          "4", "4", "4", "4",
@@ -22,68 +29,63 @@ card_values = {
 yes_or_no = input("Do you want to play a hand of blackjack? Write 'Yes' or 'No': ").lower()
 
 if (yes_or_no == "yes"):
+
     random_card1 = random.choice(cards)
+    cards.remove(random_card1)
+    user_cards.append(random_card1)
+
     random_card2 = random.choice(cards)
-    random_card1_value = card_values[random_card1]
-    random_card2_value = card_values[random_card2]
+    cards.remove(random_card2)
+    user_cards.append(random_card2)
+
+
+    user_cards_values.append(card_values[random_card1])
+    user_cards_values.append(card_values[random_card2])
+
     random_dealer_card1 = random.choice(cards)
-    random_dealer_card2 = random.choice(cards)
-    random_dealer_card1_value = card_values[random_dealer_card1]
-    random_dealer_card2_value = card_values[random_dealer_card2]
+    cards.remove(random_dealer_card1)
+    dealer_cards.append(random_dealer_card1)
 
-    if(random_card1 == "A"):
-        if(random_card2 == "A"):
-            print("Your Number Is: [2-12]")
-        elif(random_card2 != "A"):
-            print("Your Number Is: ["+str(random_card2_value + 1) + "- " + str(random_card2_value + 11) + "]")
-            your_total = "["+str(random_card2_value + 1) + "- " + str(random_dealer_card2_value + 11) + "]"
- 
-    elif(random_card2 == "A"):
-        if(random_card1 == "A"):
-            print("Your Number Is: [2, 12]")
-        elif(random_card1 != "A"):
-            print("Your Number Is: ["+str(int(random_card1_value) + 1) + "- " + str(int(random_card1_value) + 11) + "]") 
-            your_total = "["+str(random_card1_value + 1) + "- " + str(random_card_value + 11) + "]"
+    dealer_cards_values.append(card_values[random_dealer_card1])
 
-if (random_card1 != "A" and random_card2 != "A"):
-    print(random_card1)
-    print(random_card2)
-    print("Your Number Is:" + "[" + str(random_card1_value + random_card2_value) + "]")
+    print("Your Hand:",user_cards)
+    print("Dealer's Hand: ['" + dealer_cards[0] + "', '?']")
 
-while True:
+    while True:
 
-    asking = input("Do you want to draw a card or pass or exit? Type draw or pass or exit:").lower()
+            
+        asking = input("Do you want to draw a card, pass or exit? Type draw, pass or exit:" + " ").lower()
 
-    if (asking == "draw"):
-        random_card = random.choice(cards)
-        random_card_value = card_values[random_card]
 
-        if(random_card1 == "A"):
-            if(random_card2 == "A"):
-                if((12 + random_card_value) > 21):
-                    print("21i gecti simdi de 2 ile toplamina bakalim")
 
-                elif((2 + random_card_value <= 2)):
-                    print("a")
-            elif(random_card2 != "A"):
+        for char in dealer_cards:
+            dealer_total += card_values[char]
+        if dealer_total >= 18:
+            print("Dealer's Hand:",dealer_cards)
+            break
 
-        elif(random_card2 == "A"):
-            if(random_card1 == "A"):
-                if((12 + random_card_value) > 21):
-                    pass
-                    checking_if_it_exploded = 1
-                elif((2 + random_card_value <= 2)):
-                    checking_if_it_exploded = 1
 
-                    print("a")
-            elif(random_card2 != "A"):
-                
+        if (asking == "draw"):
+            random_card = random.choice(cards)
+            user_cards.append(random_card)
+            cards.remove(random_card)
+            random_dealer_card = random.choice(cards)
+            dealer_cards.append(random_dealer_card)
+            dealer_cards.append("?")
+            print("Your Hand:",user_cards)
+            print("Dealer's Hand:",dealer_cards)
+            dealer_cards.remove("?")
 
-    if (asking == "pass"):
-        print("efe you are going to show the result in here about who won")
-        break
+        elif (asking == "pass"):
+            random_dealer_card = random.choice(cards)
+            cards.remove(random_dealer_card)
+            random_dealer_card_value = card_values[random_dealer_card]
 
-    elif (asking == "exit"):
-        break
+        elif(asking == "exit"):
+            break
 
-    #TODO: i forgot to extract the cards i have choosen from the deck we will fix that later.
+if(yes_or_no == "no"):
+    None
+
+    #TODO: 18den sonra dealer daha acmiyor orada elinde ne varsa toplayip sonuca gidilecek pass dendiginde napildigini ogrenip ona gore yine bir seyler yapilacak
+    #TODO: as istisnasi puan toplarken algoritmasi yazilacak sen soru isaretini string koydun aslinda onun yerine value koydurman lazim bak dealer icin o yuzden yanlis topluyor
