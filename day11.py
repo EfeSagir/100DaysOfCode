@@ -6,6 +6,7 @@ user_cards_values = []
 dealer_cards_values = []
 user_total = 0
 dealer_total = 0
+execution_finished = 0
 
 cards = ["2", "2", "2", "2",
          "3", "3", "3", "3",
@@ -59,46 +60,56 @@ if (yes_or_no == "yes"):
 
     while True:
 
-            
-
-
-
         for char in dealer_cards:
-            dealer_total += card_values[char]
-        if(char == "A"):
-            print("efe eger 21i geciyorsa dealer totale 11 eklemek o zaman ayi 1 kabul et diceksin ama eger 21i gecmezse 11 eklenmesi 11 kabul ettireceksin direkt directly. astan sonraki kart 21i gecerse ayi 1 yapiyosun.")
+            if(char == "A" and ((dealer_total + 11) > 21)): #TODO: her chari kontrol ederken if char a ise ayri yere gonder onlari orada topla ve bitince onlarin toplamini bul when char = dealer_cards[-1] check if a = 11 busts or not and then calculate the a prices and calculate this if there are couple a's.
+                dealer_total += 1
+            else:
+                dealer_total += card_values[char]
+        for char in user_cards:
+            if(char == "A" and ((user_total + 11) > 21)):
+                user_total += 1
+            else:
+                user_total += card_values[char] #TODO: this if else block is false. if you consider a as 11 always when user total is under 21 you could bust without the capabilites of a
+        
+        # if(user_total > 21):  #TODO: if user total is over 21 with the as exceptional situtaion end it here and dont let it go to the asking part where takes input. same as for dealer.
+        #     if(dealer_total > 21):
+        #         print("Draw!")
+        #     elif(21 >= dealer_total):
+        #         print("Bust! You Lost!")
+        # if(dealer_total >21):
+        #     if(user_total >21):
+        #         print("Draw")
+        #     elif(21 >= user_total):
+        #         print("Bust! You Lost!") #TODO: i dont like these if else blocks they might be more decent. 
+
+        if(execution_finished == 1):
+            break
         
 
-        asking = input("Do you want to draw a card, pass or exit? Type draw, pass or exit:" + " ").lower()
+        asking = input("Do you want to draw a card, stand or exit? Type draw, stand or exit:" + " ").lower()
 
 
         if (asking == "draw"):
             random_card = random.choice(cards)
             user_cards.append(random_card)
             cards.remove(random_card)
-
-            
-            dealer_cards.append("?")
             print("Your Hand:",user_cards)
-            print("Dealer's Hand:",dealer_cards)
-            dealer_cards.remove("?")
-            if (dealer_total < 18):
+            print("Dealer's Hand: ['" + dealer_cards[0] + "', '?']")
+
+        elif (asking == "stand"):
+            print("Your Hand:",user_cards)
+
+            execution_finished += 1
+            if(16 >= dealer_total):
                 random_dealer_card = random.choice(cards)
                 dealer_cards.append(random_dealer_card)
-
-        elif (asking == "pass"):
-
-            random_dealer_card = random.choice(cards)
-            cards.remove(random_dealer_card)
-            random_dealer_card_value = card_values[random_dealer_card]
+                cards.remove(random_dealer_card)
+                print("Dealers Hand:",dealer_cards)
+            elif(dealer_total >= 17):
+                print("Dealers Hand:",dealer_cards)
 
         elif(asking == "exit"):
             break
 
 if(yes_or_no == "no"):
     None
-
-    #TODO: 18den sonra dealer daha acmiyor orada elinde ne varsa toplayip sonuca gidilecek pass dendiginde napildigini ogrenip ona gore yine bir seyler yapilacak
-    #TODO: as istisnasi puan toplarken algoritmasi yazilacak sen soru isaretini string koydun aslinda onun yerine value koydurman lazim bak dealer icin o yuzden yanlis topluyor
-
-    #TODO: kazanma olayi, anin kac kabul edilecegi duruma gore ne zaman bitis talimati verilecegi belirlenilip oyun bitirilecektir kodlari.
