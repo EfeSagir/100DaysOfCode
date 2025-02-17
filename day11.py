@@ -46,6 +46,12 @@ if (yes_or_no == "yes"):
     cards.remove(random_dealer_card1)
     dealer_cards.append(random_dealer_card1)
 
+    random_dealer_card2 = random.choice(cards)
+    cards.remove(random_dealer_card2)
+    dealer_cards.append(random_dealer_card2)
+
+
+
     dealer_cards_values.append(card_values[random_dealer_card1])
 
     print("Your Hand:",user_cards)
@@ -54,7 +60,6 @@ if (yes_or_no == "yes"):
     while True:
 
             
-        asking = input("Do you want to draw a card, pass or exit? Type draw, pass or exit:" + " ").lower()
 
 
 
@@ -62,23 +67,27 @@ if (yes_or_no == "yes"):
             dealer_total += card_values[char]
         if(char == "A"):
             print("efe eger 21i geciyorsa dealer totale 11 eklemek o zaman ayi 1 kabul et diceksin ama eger 21i gecmezse 11 eklenmesi 11 kabul ettireceksin direkt directly. astan sonraki kart 21i gecerse ayi 1 yapiyosun.")
-        if dealer_total >= 18:
-            print("Dealer's Hand:",dealer_cards)
-            break
+        
+
+        asking = input("Do you want to draw a card, pass or exit? Type draw, pass or exit:" + " ").lower()
 
 
         if (asking == "draw"):
             random_card = random.choice(cards)
             user_cards.append(random_card)
             cards.remove(random_card)
-            random_dealer_card = random.choice(cards)
-            dealer_cards.append(random_dealer_card)
+
+            
             dealer_cards.append("?")
             print("Your Hand:",user_cards)
             print("Dealer's Hand:",dealer_cards)
             dealer_cards.remove("?")
+            if (dealer_total < 18):
+                random_dealer_card = random.choice(cards)
+                dealer_cards.append(random_dealer_card)
 
         elif (asking == "pass"):
+
             random_dealer_card = random.choice(cards)
             cards.remove(random_dealer_card)
             random_dealer_card_value = card_values[random_dealer_card]
@@ -91,3 +100,5 @@ if(yes_or_no == "no"):
 
     #TODO: 18den sonra dealer daha acmiyor orada elinde ne varsa toplayip sonuca gidilecek pass dendiginde napildigini ogrenip ona gore yine bir seyler yapilacak
     #TODO: as istisnasi puan toplarken algoritmasi yazilacak sen soru isaretini string koydun aslinda onun yerine value koydurman lazim bak dealer icin o yuzden yanlis topluyor
+
+    #TODO: kazanma olayi, anin kac kabul edilecegi duruma gore ne zaman bitis talimati verilecegi belirlenilip oyun bitirilecektir kodlari.

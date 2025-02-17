@@ -1,6 +1,7 @@
+import tkinter
 from tkinter import *
 
-root = Tk() #Tk() creates main window
+root = Tk()
 
 global addition_number_count, substraction_number_count, multiplication_number_count, division_number_count, f_num
 
