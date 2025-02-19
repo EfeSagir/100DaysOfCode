@@ -2,10 +2,8 @@ import random
 import os
 
 def clear_screen():
-    # Windows
     if os.name == 'nt':
         os.system('cls')
-    # Linux/MacOS
     else:
         os.system('clear')
 
