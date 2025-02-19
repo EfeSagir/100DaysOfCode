@@ -1,4 +1,13 @@
 import random
+import os
+
+def clear_screen():
+    # Windows
+    if os.name == 'nt':
+        os.system('cls')
+    # Linux/MacOS
+    else:
+        os.system('clear')
 
 user_cards = []
 dealer_cards = []
@@ -7,6 +16,8 @@ dealer_cards_values = []
 user_total = 0
 dealer_total = 0
 execution_finished = 0
+user_ace_count = 0
+dealer_ace_count = 0
 
 cards = ["2", "2", "2", "2",
          "3", "3", "3", "3",
@@ -51,64 +62,142 @@ if (yes_or_no == "yes"):
     cards.remove(random_dealer_card2)
     dealer_cards.append(random_dealer_card2)
 
-
-
     dealer_cards_values.append(card_values[random_dealer_card1])
 
     print("Your Hand:",user_cards)
     print("Dealer's Hand: ['" + dealer_cards[0] + "', '?']")
 
     while True:
-
+        dealer_total = 0
+        user_total = 0 
         for char in dealer_cards:
-            if(char == "A" and ((dealer_total + 11) > 21)): #TODO: her chari kontrol ederken if char a ise ayri yere gonder onlari orada topla ve bitince onlarin toplamini bul when char = dealer_cards[-1] check if a = 11 busts or not and then calculate the a prices and calculate this if there are couple a's.
-                dealer_total += 1
-            else:
+            if(char == "A"):
+                dealer_ace_count += 1
+            elif(char != "A"):
                 dealer_total += card_values[char]
+        if(dealer_ace_count > 1):
+            if(21 >= (dealer_total + (11 + ((dealer_ace_count)-1) * 1))):
+                dealer_total += (1   + ((dealer_ace_count)-1) * 1)
+            elif((11 + ((dealer_ace_count)-1) * 1) >21):
+                dealer_total += (dealer_ace_count)
+        elif(dealer_ace_count == 1):
+            if(11 > dealer_total):
+                dealer_total += 11
+            elif(dealer_total >= 21):
+                dealer_total += (dealer_ace_count) * 1
+                
         for char in user_cards:
-            if(char == "A" and ((user_total + 11) > 21)):
-                user_total += 1
+            if(char == "A"):
+                user_ace_count += 1
+            elif(char != "A"):
+                user_total += card_values[char]
+        if(user_ace_count > 1):
+            if(21 >= (user_total + (11 + ((user_ace_count) - 1) * 1))):
+                user_total += (1 + ((user_ace_count) - 1) * 1)
+            elif((11 + ((user_ace_count) - 1) * 1) > 21):
+                user_total += (user_ace_count)
+        elif(user_ace_count == 1):
+            if(11 > user_total):
+                user_total += 11
+            elif(user_total >= 21):
+                user_total += (user_ace_count) * 1
+                
+        
+        if execution_finished == 1:
+            if user_total > 21 and dealer_total > 21:
+                print("ITS A TIE!")
+                clear_screen()
+                print("Your Hand:",user_cards)
+                print("Dealers Hand:",dealer_cards)
+
+            elif user_total > 21:
+                print("HOUSE WINS!")
+                clear_screen()
+                print("Your Hand:",user_cards)
+                print("Dealers Hand:",dealer_cards)
+
+            elif dealer_total > 21:
+                print("YOU WON!")
+                clear_screen()
+                print("Your Hand:",user_cards)
+                print("Dealers Hand:",dealer_cards)
+
+            elif dealer_total == user_total:
+                clear_screen()
+                print("Your Hand:",user_cards)
+                print("Dealers Hand:",dealer_cards)
+                print("ITS A TIE!")
+
+            elif user_total < 21 and dealer_total < 21:
+                if dealer_total > user_total:
+                    clear_screen()
+                    print("Your Hand:",user_cards)
+                    print("Dealers Hand:",dealer_cards)
+                    print("HOUSE WINS!")
+                else:
+                    clear_screen()
+                    print("Your Hand:",user_cards)
+                    print("Dealers Hand:",dealer_cards)
+                    print("YOU WON!")
             else:
-                user_total += card_values[char] #TODO: this if else block is false. if you consider a as 11 always when user total is under 21 you could bust without the capabilites of a
-        
-        # if(user_total > 21):  #TODO: if user total is over 21 with the as exceptional situtaion end it here and dont let it go to the asking part where takes input. same as for dealer.
-        #     if(dealer_total > 21):
-        #         print("Draw!")
-        #     elif(21 >= dealer_total):
-        #         print("Bust! You Lost!")
-        # if(dealer_total >21):
-        #     if(user_total >21):
-        #         print("Draw")
-        #     elif(21 >= user_total):
-        #         print("Bust! You Lost!") #TODO: i dont like these if else blocks they might be more decent. 
-
-        if(execution_finished == 1):
+                if user_total > dealer_total:
+                    clear_screen()
+                    print("Your Hand:",user_cards)
+                    print("Dealers Hand:",dealer_cards)
+                    print("YOU WON!")
+                else:
+                    clear_screen()
+                    print("Your Hand:",user_cards)
+                    print("Dealers Hand:",dealer_cards)
+                    print("HOUSE WINS!")
             break
-        
+        if(user_total>=21):
+            execution_finished = 1
+        if (execution_finished == 0):
+            asking = input("Do you want to hit, stand or surrender? Type hit, stand or surrender:" + " ").lower()
+        else:
+            continue
 
-        asking = input("Do you want to draw a card, stand or exit? Type draw, stand or exit:" + " ").lower()
-
-
-        if (asking == "draw"):
+        if (asking == "hit"):
             random_card = random.choice(cards)
             user_cards.append(random_card)
             cards.remove(random_card)
             print("Your Hand:",user_cards)
-            print("Dealer's Hand: ['" + dealer_cards[0] + "', '?']")
+            if(len(dealer_cards) == 2):
+                print("Dealer's Hand: ['" + dealer_cards[0] + "', '?']")
+            elif (len(dealer_cards) > 2):
+                dealer_cards.append("?")
+                print(dealer_cards)
+                dealer_cards.remove("?")
+
 
         elif (asking == "stand"):
-            print("Your Hand:",user_cards)
+            execution_finished = 1
+            print("Your Hand:", user_cards)
+            if dealer_total < 17:
+                while dealer_total < 17:
+                    random_dealer_card = random.choice(cards)
+                    dealer_cards.append(random_dealer_card)
+                    cards.remove(random_dealer_card)
+                    for char in dealer_cards:
+                        if(char == "A"):
+                            dealer_ace_count += 1
+                        elif(char != "A"):
+                            dealer_total += card_values[char]
+                    if(dealer_ace_count > 1):
+                        if(21 >= (dealer_total + (11 + ((dealer_ace_count)-1) * 1))):
+                            dealer_total += (1   + ((dealer_ace_count)-1) * 1)
+                        elif((11 + ((dealer_ace_count)-1) * 1) >21):
+                            dealer_total += (dealer_ace_count)
+                    elif(dealer_ace_count == 1):
+                        if(11 > dealer_total):
+                            dealer_total += 11
+                        elif(dealer_total >= 21):
+                            dealer_total += (dealer_ace_count) * 1
+            print("Dealers Hand:", dealer_cards)
+            
 
-            execution_finished += 1
-            if(16 >= dealer_total):
-                random_dealer_card = random.choice(cards)
-                dealer_cards.append(random_dealer_card)
-                cards.remove(random_dealer_card)
-                print("Dealers Hand:",dealer_cards)
-            elif(dealer_total >= 17):
-                print("Dealers Hand:",dealer_cards)
-
-        elif(asking == "exit"):
+        elif(asking == "surrender"):
             break
 
 if(yes_or_no == "no"):
