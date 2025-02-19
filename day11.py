@@ -103,22 +103,22 @@ if (yes_or_no == "yes"):
         
         if execution_finished == 1:
             if user_total > 21 and dealer_total > 21:
+                clear_screen()
+                print("Your Hand:",user_cards)
+                print("Dealers Hand:",dealer_cards)
                 print("ITS A TIE!")
-                clear_screen()
-                print("Your Hand:",user_cards)
-                print("Dealers Hand:",dealer_cards)
-
+                
             elif user_total > 21:
-                print("HOUSE WINS!")
                 clear_screen()
                 print("Your Hand:",user_cards)
                 print("Dealers Hand:",dealer_cards)
+                print("HOUSE WINS!")
 
             elif dealer_total > 21:
-                print("YOU WON!")
                 clear_screen()
                 print("Your Hand:",user_cards)
                 print("Dealers Hand:",dealer_cards)
+                print("YOU WON!")
 
             elif dealer_total == user_total:
                 clear_screen()
