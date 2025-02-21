@@ -194,9 +194,7 @@ if (yes_or_no == "yes"):
                             dealer_total += (dealer_ace_count) * 1
             print("Dealers Hand:", dealer_cards)
             
-
         elif(asking == "surrender"):
             break
-
 if(yes_or_no == "no"):
     None
