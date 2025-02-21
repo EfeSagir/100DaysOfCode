@@ -125,11 +125,3 @@ button_comma.grid(row =5, column = 2)
 
 
 root.mainloop()
-
-#TODO: chain calculation
-#TODO: first number cant be negative
-#TODO: there is no comma
-#TODO: cant erase specifically index[-1]
-#TODO: it shows as float
-#TODO: after clearing it uses still the latest number
-#TODO: try-except
