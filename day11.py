@@ -168,7 +168,6 @@ if (yes_or_no == "yes"):
                 print(dealer_cards)
                 dealer_cards.remove("?")
 
-
         elif (asking == "stand"):
             execution_finished = 1
             print("Your Hand:", user_cards)
