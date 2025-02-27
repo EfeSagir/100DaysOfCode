@@ -16,6 +16,7 @@ def if_cold_or_hot_or_got(user_input):
     else:
         print("Cold")
 
+
 guess_count = input("How difficult do you want your game to be? Type easy or hard.").lower()
 
 if(guess_count == "easy"):
