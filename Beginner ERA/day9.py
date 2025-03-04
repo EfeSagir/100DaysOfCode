@@ -113,6 +113,7 @@ travel_log = {
     }
 }
 
+
 print(travel_log["Germany"]["cities_visited"][2])
 
 name = input("Please enter your name:\n")

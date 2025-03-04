@@ -169,6 +169,7 @@ if (yes_or_no == "yes"):
                 dealer_cards.remove("?")
 
         elif (asking == "stand"):
+
             execution_finished = 1
             print("Your Hand:", user_cards)
             if dealer_total < 17:
@@ -191,10 +192,9 @@ if (yes_or_no == "yes"):
                             dealer_total += 11
                         elif(dealer_total >= 21):
                             dealer_total += (dealer_ace_count) * 1
+
             print("Dealers Hand:", dealer_cards)
-            
         elif(asking == "surrender"):
             break
-        
 if(yes_or_no == "no"):
     None

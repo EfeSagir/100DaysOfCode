@@ -19,6 +19,7 @@ print(sum)
 
 print(max(student_scores))
 
+
 student_result = [13,96,1313,9696]
 max_score = 0
 for score in student_result:

@@ -13,6 +13,7 @@ net_fortune = {
     "Gabe Newell": "4500000000",
     "Notch": "2500000000"
 }
+
 point = 0
 higher = 0
 lower = 0

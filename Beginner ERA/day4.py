@@ -43,6 +43,7 @@ print(states_of_america[randomNumber -1])
 fruits = ["Strawberries", "Nectarines", "Apples", "Grapes"]
 vegetables = ["Spinach", "Kale", "Tomatoes", "Celery", " Potatoes"]
 
+
 dirty_dozen = [fruits,vegetables]
 print(dirty_dozen)
 

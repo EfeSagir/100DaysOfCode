@@ -22,7 +22,6 @@ def button_addition():
     substraction_number_count = 0
     multiplication_number_count = 0
     division_number_count = 0
-
     first_number = e.get()
     f_num = first_number
     e.delete(0, END)

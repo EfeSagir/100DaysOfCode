@@ -24,3 +24,4 @@ for checking in itertools.count():
         if incorrect_count == 6:
             print("Game Over, You Lose!")
             break
+        

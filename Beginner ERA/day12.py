@@ -39,3 +39,4 @@ elif(guess_count == "hard"):
         print(f"You have {5 - (i + 1)} attempts left.")
 else:
     print("You typed wrong. Write easy or hard.")
+    

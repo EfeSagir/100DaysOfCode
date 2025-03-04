@@ -47,7 +47,6 @@ print(f"Your score is: {score}")
 
 # input always returns string value
 
-
 print("Welcome to the tip calculator!")
 bill = print(type(input("What is the total bill? $")))
 tip = input("What percentage tip would you like to give? 10, 12 ,15")
