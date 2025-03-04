@@ -195,5 +195,6 @@ if (yes_or_no == "yes"):
             
         elif(asking == "surrender"):
             break
+        
 if(yes_or_no == "no"):
     None
