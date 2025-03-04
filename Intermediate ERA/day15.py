@@ -98,8 +98,10 @@ resources = {
 }
 
 while True:
+
     total_money = 0
     i = 0
+
     try:
         coffee = input("What do you want? (espresso, latte, cappuccino): ").lower()
         
@@ -126,7 +128,6 @@ while True:
         except ValueError:
             print("Invalid input. Please enter numbers only.")
             i = 1
-        
         match coffee:
             case "espresso":
                 if total_money >= MENU["espresso"]["cost"]:
