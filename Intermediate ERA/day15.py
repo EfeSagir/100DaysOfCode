@@ -128,6 +128,7 @@ while True:
         except ValueError:
             print("Invalid input. Please enter numbers only.")
             i = 1
+            
         match coffee:
             case "espresso":
                 if total_money >= MENU["espresso"]["cost"]:
