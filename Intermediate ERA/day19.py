@@ -51,4 +51,3 @@ while is_race_on:
             else:
                 print("YOU LOSE")
 screen.exitonclick()
-        
