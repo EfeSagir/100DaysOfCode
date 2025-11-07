@@ -1,5 +1,5 @@
 from turtle import Turtle
-starting_positions = [(0,0), (-20,0), (-40,0)]
+starting_positions = [(0,0), (-20,0), (-40,0),(-60,0), (-80,0)]
 move_distance = 20
 class Snake:
         def __init__(self):
